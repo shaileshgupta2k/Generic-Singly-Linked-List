@@ -52,13 +52,12 @@ class Linked_List{
         }
         return head;
     }
-    Node<T>* midPoint(){
-        if(head == NULL){
-            cout << "Error: List is empty";
+    Node<T>* midPoint(Node<T>* temp ){
+        if(temp == NULL){
             return head;
         }
-        Node<T>* fast = head->next;
-        Node<T>* slow = head;
+        Node<T>* fast = temp->next;
+        Node<T>* slow = temp;
         while(fast != NULL && fast->next != NULL){
             fast = fast->next->next;
             slow = slow->next;
@@ -69,7 +68,7 @@ class Linked_List{
         if(temp == NULL || temp->next == NULL){
             return temp;
         }
-        Node<T>* mid = midPoint();
+        Node<T>* mid = midPoint(temp);
         Node<T>* leftHalf = temp;
         Node<T>* rightHalf = mid->next;
         mid->next = NULL;
