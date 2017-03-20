@@ -78,6 +78,23 @@ class Linked_List{
         temp = merge(left, right);
         return temp;
     }
+    void add(T data){
+        Node<T>* newNode = new Node<T>(data);
+        if(newNode == NULL){
+            cout << "Error: Unable to create node now" << endl;
+            return;
+        }
+        if(tail == NULL){
+            head = newNode;
+            tail = newNode;
+            length++;
+            return;
+        }
+        tail->next = newNode;
+        tail = tail->next;
+        length++;
+        return;
+    }
 
 public:
     Linked_List(){
@@ -156,24 +173,7 @@ public:
         cout << "Error: Element not found" << endl;
         return;
     }
-    void add(T data){
-        Node<T>* newNode = new Node<T>(data);
-        if(newNode == NULL){
-            cout << "Error: Unable to create node now" << endl;
-            return;
-        }
-        if(tail == NULL){
-            head = newNode;
-            tail = newNode;
-            length++;
-            return;
-        }
-        tail->next = newNode;
-        tail = tail->next;
-        length++;
-        return;
-    }
-    void insert(int position, T data){
+    void insert(T data, int position = -1){
         if(position > length){
             cout << "Enter a valid position" << endl;
             return;
@@ -181,6 +181,10 @@ public:
         Node<T>* newNode = new Node<T>(data);
         if(newNode == NULL){
             cout << "Error: Unable to create node now" << endl;
+            return;
+        }
+        if(position == -1){
+            add(data);
             return;
         }
         if(head == NULL){
