@@ -172,9 +172,39 @@ public:
         cout << "Error: Element not found" << endl;
         return;
     }
+    void insert_beg(T data){
+        Node<T>* newNode = new Node<T>(data);
+        if(newNode == NULL){
+            cout << "Error: Unable to create new node" << endl;
+            return;
+        }
+        if(tail == NULL || head == NULL){
+            head = newNode;
+            tail = newNode;
+            return;
+        }
+        newNode->next = head;
+        head = newNode;
+        return;
+    }
+    void insert_last(T data){
+        Node<T>* newNode = new Node<T>(data);
+        if(newNode == NULL){
+            cout << "Error: Unable to create new node" << endl;
+            return;
+        }
+        if(tail == NULL || head == NULL){
+            head = newNode;
+            tail = newNode;
+            return;
+        }
+        tail->next = newNode;
+        tail = tail->next;
+        return;
+    }
     void insert(T data, int position = -1){
         if(position > length){
-            cout << "Enter a valid position" << endl;
+            cout << "Error: Enter a valid position" << endl;
             return;
         }
         Node<T>* newNode = new Node<T>(data);
@@ -193,7 +223,7 @@ public:
             return;
         }
         if(position == 1){
-            head->next = newNode;
+            newNode->next = head;
             head = newNode;
             if(length == 1)
                 tail = head;
@@ -210,6 +240,7 @@ public:
             }
             prev = temp;
             temp = temp->next;
+            i++;
         }
         length++;
         return;
